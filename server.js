@@ -3,7 +3,7 @@
 var newrelic = require('newrelic');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/myapp');
+mongoose.connect('mongodb://localhost/db');
 
 var express = require('express');
 var app = express();
@@ -28,8 +28,7 @@ router.get('/', function(req, res){
 
 });
 
-router.route('/bears')
-  .post(function(req,res){
+router.route('/bears').post(function(req,res){
   	var bear = new Bear();
   	bear.name = req.body.name;
 
@@ -40,6 +39,18 @@ router.route('/bears')
   		res.json({ message: "Bear created!"});
   	});
   });
+
+router.route('/bears').get(function(req,res){
+	Bear.find(function(err,bears){
+		if (err)
+			res.send(err);
+
+		res.json(bears);
+	});
+});
+
+
+
 
 
 

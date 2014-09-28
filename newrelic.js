@@ -9,6 +9,17 @@ exports.config = {
    * Array of application names.
    */
   app_name : ['Node_Express_Mongo API'],
+
+  transaction_threshold : {
+    enabled : true,
+    transaction_threshold : 'apdex_f'
+  },
+
+  transaction_events : {
+    enabled : true
+  },
+
+  apdex_t : 0.001,
   /**
    * Your New Relic license key.
    */
